@@ -1,0 +1,19 @@
+{
+  "name": "sbxl",
+  "version": "1.0.0",
+  "description": "Spectrum Branch eXtra Lazy Utilities",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spectrumbranch/sbxl.git"
+  },
+  "author": "cbebry",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/spectrumbranch/sbxl/issues"
+  },
+  "homepage": "https://github.com/spectrumbranch/sbxl#readme"
+}
