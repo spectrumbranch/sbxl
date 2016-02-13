@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 var sbxl = require('./lib')
-  , util = sbxl.util
-  , handlebars = require('handlebars')
   , argv = require('yargs')
       .usage('Usage: $0 -m [mode] -s [service]')
 
@@ -28,4 +26,14 @@ if (argv.m === 'analysis') {
     } else if (argv.s === 'nginx') {
         sbxl.nginx.analysis();
     }
+} else if (argv.m === 'export') {
+    if (argv.s === 'system') {
+        //
+    } else if (argv.s === 'apache') {
+        sbxl.apache.export();
+    } else if (argv.s === 'nginx') {
+        //sbxl.nginx.export();
+    }
+} else if (argv.m === 'import') {
+
 }
