@@ -6,11 +6,42 @@ var util = require('./lib/util')
   , argv = require('yargs')
       .usage('Usage: $0 -m [mode]')
       .describe('m', 'Mode of operation')
-      .choices('m', ['apache', 'nginx'])
+      .choices('m', ['apache', 'nginx', 'analysis'])
       .demand(['m'])
       .alias('m', 'mode')
       .argv
   ;
+
+if (argv.m === 'analysis') {
+    console.log('dir grabbing');
+    var env = process.env;
+    var home = env.HOME;
+    var user = env.LOGNAME || env.USER || env.LNAME || env.USERNAME;
+    var sudoUser = env.SUDO_USER;
+    var actualHome;
+
+    if (sudoUser === undefined) {
+      //TODO make usingRootAsSudo configurable
+      var usingRootAsSudo = false;
+      
+      if (usingRootAsSudo) {
+        actualHome = home || (process.getuid() === 0 ? '/root' : (user ? '/home/' + user : null));
+      } else {
+        actualHome = home || (user ? '/home/' + user : null);
+      }
+    } else {
+        actualHome = (sudoUser ? '/home/' + sudoUser : null);
+    }
+
+    
+
+    console.log('home: ', home);
+    console.log('user: ', user);
+
+    console.log('actualHome: ', actualHome); 
+
+    console.log('sudoUser: ', sudoUser);
+}
   
 if (argv.m === 'apache') {
     q.all([
