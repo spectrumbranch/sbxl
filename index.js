@@ -13,18 +13,26 @@ var sbxl = require('./lib')
       .alias('m', 'mode')
       .default('m', 'analysis')
 
+      .describe('f', 'Force action')
+      .boolean('f')
+      .alias('f', 'force')
+      .default('f', false)
+
       .demand(['m', 's'])
       .argv
   ;
 
 
 if (argv.m === 'analysis') {
+    var options = {};
+    options.force = argv.f;
+    
     if (argv.s === 'system') {
-        sbxl.system.analysis();
+        sbxl.system.analysis(options);
     } else if (argv.s === 'apache') {
-        sbxl.apache.analysis();
+        sbxl.apache.analysis(options);
     } else if (argv.s === 'nginx') {
-        sbxl.nginx.analysis();
+        sbxl.nginx.analysis(options);
     }
 } else if (argv.m === 'export') {
     if (argv.s === 'system') {
