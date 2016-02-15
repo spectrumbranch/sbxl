@@ -18,6 +18,11 @@ var sbxl = require('./lib')
       .alias('f', 'force')
       .default('f', false)
 
+      .describe('v', 'Verbose output')
+      .boolean('v')
+      .alias('v', 'verbose')
+      .default('v', false)
+
       .demand(['m', 's'])
       .argv
   ;
@@ -26,7 +31,8 @@ var sbxl = require('./lib')
 if (argv.m === 'analysis') {
     var options = {};
     options.force = argv.f;
-    
+    options.verbose = argv.v
+
     if (argv.s === 'system') {
         sbxl.system.analysis(options);
     } else if (argv.s === 'apache') {
