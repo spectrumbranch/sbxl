@@ -49,5 +49,11 @@ if (argv.m === 'analysis') {
         //sbxl.nginx.export();
     }
 } else if (argv.m === 'import') {
-
+    if (argv.s === 'system') {
+        //
+    } else if (argv.s === 'apache') {
+        sbxl.apache.import();
+    } else if (argv.s === 'nginx') {
+        //sbxl.nginx.export();
+    }
 }
