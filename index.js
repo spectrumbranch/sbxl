@@ -9,7 +9,7 @@ var sbxl = require('./lib')
       //.default('s', 'system')
 
       .describe('m', 'Mode of operation')
-      .choices('m', ['analysis', 'import', 'export'])
+      .choices('m', ['analysis', 'import', 'export', 'enable', 'disable'])
       .alias('m', 'mode')
       .default('m', 'analysis')
 
@@ -55,5 +55,31 @@ if (argv.m === 'analysis') {
         sbxl.apache.import();
     } else if (argv.s === 'nginx') {
         sbxl.nginx.import();
+    }
+
+
+} else if (argv.m === 'enable') {
+    if (argv.s === 'system') {
+        //
+    } else if (argv.s === 'apache') {
+        if (argv.name) {
+          sbxl.apache.enableSite(argv.name);
+        } else {
+          console.log('Must provide a name argument.');
+        }
+    } else if (argv.s === 'nginx') {
+        if (argv.name) {
+          sbxl.nginx.enableSite(argv.name);
+        } else {
+          console.log('Must provide a name argument.');
+        }
+    }
+} else if (argv.m === 'disable') {
+    if (argv.s === 'system') {
+        //
+    } else if (argv.s === 'apache') {
+        //sbxl.apache.disableSite(argv.name);
+    } else if (argv.s === 'nginx') {
+        //sbxl.nginx.disableSite(argv.name);
     }
 }
